@@ -74,6 +74,8 @@ namespace _2dGame //Midnight Racers
             points = 0;
             multiple = 0;
             speed = 0;
+            timesHit = 0;
+            criticalHit = false;
 
             //Create Hero
             hero = new Player(100, 235, 4, 6);
@@ -360,17 +362,21 @@ namespace _2dGame //Midnight Racers
             //loss conditions
             if(criticalHit == true)
             {
+                gameTimer.Stop();
                 bgMusic.Stop();
 
-                criticalHit = false;
+                Refresh();
+                Thread.Sleep(500);
 
                 Form1.ChangeScreen(this, new LossScreen());
             }
             if(timesHit == 20)
             {
+                gameTimer.Stop();
                 bgMusic.Stop();
 
-                timesHit = 0;
+                Refresh();
+                Thread.Sleep(500);
 
                 Form1.ChangeScreen(this, new LossScreen());
             }

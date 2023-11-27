@@ -74,6 +74,12 @@
       <DependentUpon>InstructionScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Lights.cs" />
+    <Compile Include="LossScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LossScreen.Designer.cs">
+      <DependentUpon>LossScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InstructionScreen.resx">
       <DependentUpon>InstructionScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LossScreen.resx">
+      <DependentUpon>LossScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
@@ -154,6 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1-01.-Eisoptrophobia.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splosion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splosion-removebg-preview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

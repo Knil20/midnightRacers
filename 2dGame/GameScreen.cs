@@ -25,8 +25,10 @@ namespace _2dGame //Midnight Racers
         string direction, crColor;
         int time = 6000; //6000
         int colorValue = 0;
+        
 
-       // public static SoundPlayer bgMusic = new SoundPlayer(Properties.Resources._240BitsPerMile);
+
+        // public static SoundPlayer bgMusic = new SoundPlayer(Properties.Resources._240BitsPerMile);
 
         Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
 
@@ -42,6 +44,11 @@ namespace _2dGame //Midnight Racers
         public static int points = 0;
         public static int multiple = 0;
         public static int speed = 0;
+        public static int collision = 0;
+        public static int penalty = 0;
+        public static int timesHit = 0;
+        public static Boolean criticalHit = false;
+
         Random randGen = new Random();
         Random randColor = new Random();
         System.Windows.Media.MediaPlayer bgMusic = new System.Windows.Media.MediaPlayer();
@@ -194,7 +201,7 @@ namespace _2dGame //Midnight Racers
         }
         private void staticEr_MediaEnded(object sender, EventArgs e)
         {
-            //Restart staticnoise
+            //Restart static noise
             staticEr.Stop();
             staticEr.Play();
         }
@@ -350,10 +357,30 @@ namespace _2dGame //Midnight Racers
                     bgColour = Color.FromArgb(colorValue, colorValue, colorValue);
                 }
             }
+            //loss conditions
+            if(criticalHit == true)
+            {
+                bgMusic.Stop();
+
+                criticalHit = false;
+
+                Form1.ChangeScreen(this, new LossScreen());
+            }
+            if(timesHit == 20)
+            {
+                bgMusic.Stop();
+
+                timesHit = 0;
+
+                Form1.ChangeScreen(this, new LossScreen());
+            }
             //finish the game when timer runs out
             if (time == 0)
             {
                 gameTimer.Stop();
+
+                penalty = collision * -100;
+                points += penalty;
 
                 Refresh();
                 Thread.Sleep(1000);
@@ -433,7 +460,8 @@ namespace _2dGame //Midnight Racers
                 e.Graphics.FillRectangle(bitBrush, 0, 442, 800, 2);
                 e.Graphics.FillRectangle(bitBrush, 0, 462, 800, 2);
                 e.Graphics.FillRectangle(bitBrush, 0, 482, 800, 2);
-                glitch.Play(); 
+                glitch.Play();
+                points -= 10;
                
             }
             //permanently drawing the "Glitch" effect, playing sounds, changing colors

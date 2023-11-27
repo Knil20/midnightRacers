@@ -19,26 +19,28 @@ namespace _2dGame
         public GameOverScreen()
         {
             InitializeComponent();
+
             win.Play();
-            scoreLabel.Text = $"Your Final Score Is \n {GameScreen.points}";
-            //pointTimer.Start();
+            pointTimer.Start();
+            newPoint = 0;
         }
 
         private void pointTimer_Tick(object sender, EventArgs e)
         {
             if(newPoint < GameScreen.points)
             {
-                newPoint++;
+                newPoint += 5;
                 
             }
-            
+            scoreLabel.Text = $"Your Final Score Is \n {newPoint}";
+
             Refresh();
         }
         private void playAgainButton_Click(object sender, EventArgs e)
         {
-            //pointTimer.Stop();
+            pointTimer.Stop();
             win.Stop();
-            Form1.ChangeScreen(this, new GameScreen());
+            Form1.ChangeScreen(this, new MenuScreen());
         }
 
 

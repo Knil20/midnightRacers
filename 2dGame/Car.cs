@@ -135,8 +135,17 @@ namespace _2dGame
 
                 boom.Play();
 
+                if(GameScreen.speed <= -30)
+                {
+                    GameScreen.criticalHit = true;
+                }
+
+                GameScreen.timesHit += 1;
                 GameScreen.speed = -1;
                 GameScreen.multiple = 0;
+                GameScreen.collision += 1;
+
+                
                 
             }
         }

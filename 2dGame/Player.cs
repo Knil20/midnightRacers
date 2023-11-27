@@ -17,6 +17,7 @@ namespace _2dGame
         public SolidBrush tailLightBrush = new SolidBrush(Color.Red);
         public SolidBrush shieldBrush = new SolidBrush(Color.DeepSkyBlue);
         public SolidBrush wheelBrush = new SolidBrush(Color.Black);
+        public SolidBrush wiperBrush = new SolidBrush(Color.Black);
 
         public Rectangle headLight;
         public Rectangle headLight2;
@@ -26,6 +27,7 @@ namespace _2dGame
         public Rectangle windshield2;
         public Rectangle fWheels;
         public Rectangle bWheels;
+        
 
 
         public Player(int _x, int _y, int _xSpeed, int _ySpeed)
@@ -42,8 +44,7 @@ namespace _2dGame
             windshield = new Rectangle(x + width - 25, y + 2, 15, 26);
             windshield2 = new Rectangle(x + width - 70, y + 2, 10, 26);
             fWheels = new Rectangle(x + width - 25, y - 3, 15, 36);
-            bWheels = new Rectangle(x + width - 70, y - 3, 15, 36);
-        }
+            bWheels = new Rectangle(x + width - 70, y - 3, 15, 36);        }
 
         public void Move(string direction)
         {

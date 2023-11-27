@@ -16,7 +16,7 @@ namespace _2dGame
         {
             InitializeComponent();
 
-            helpLabel.Text = "Welcome To Midnight Racers \n\nThe goal of the game is to get the highest score possible before the sun rises.\nYour character will speed up over time, and the faster you are, the more points you will earn.\nBe careful though, if you collide with another car, your speed will drop causing your PPS(Points Per Second) to drop.\n\nWASD to move.";
+            helpLabel.Text = "Welcome To Midnight Racers \n\nThe goal of the game is to get the highest score possible before the sun rises.\nYour character will speed up over time, and you have to be faster than 50MPH to earn points.\nBe careful though, if you collide with another car, your speed will drop back to 5MPH and cause a 100 point penalty.\n\nWASD to move.\nDown Arrow to slow down.";
         }
 
         private void helpButton_Click(object sender, EventArgs e)

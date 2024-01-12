@@ -25,12 +25,11 @@ namespace _2dGame //Midnight Racers
         string direction, crColor;
         int time = 6000; //6000
         int colorValue = 0;
-        
-
+        Boolean isPaused = true;
 
         // public static SoundPlayer bgMusic = new SoundPlayer(Properties.Resources._240BitsPerMile);
 
-        Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
+        Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown, escDown;
 
         SolidBrush heroBrush = new SolidBrush(Color.BlueViolet);
         SolidBrush sideBrush = new SolidBrush(Color.Gray);
@@ -47,7 +46,13 @@ namespace _2dGame //Midnight Racers
         public static int collision = 0;
         public static int penalty = 0;
         public static int timesHit = 0;
+
         public static Boolean criticalHit = false;
+        public static Boolean winLoad = false;
+        public static Boolean loseLoad = false;
+        public static Boolean menuLoad = false;
+        public static Boolean resetLoad = false;
+
 
         Random randGen = new Random();
         Random randColor = new Random();
@@ -58,6 +63,7 @@ namespace _2dGame //Midnight Racers
         
 
         Color bgColour = Color.FromArgb(0, 0, 0);
+
         public GameScreen()
         {
             InitializeComponent();
@@ -76,6 +82,10 @@ namespace _2dGame //Midnight Racers
             speed = 0;
             timesHit = 0;
             criticalHit = false;
+            winLoad = false;
+            loseLoad = false;
+            menuLoad = false;
+            resetLoad = false;
 
             //Create Hero
             hero = new Player(100, 235, 4, 6);
@@ -121,13 +131,13 @@ namespace _2dGame //Midnight Racers
             if (location == 1)
             {
                 y = randGen.Next(40, 90);
-                xSpeed = -3;
+                xSpeed = -2;
                 direction = "left";
             }
             else if (location == 2)
             {
                 y = randGen.Next(140, 210);
-                xSpeed = -3;
+                xSpeed = -2;
                 direction = "left";
             }
             else if (location == 3)
@@ -163,6 +173,27 @@ namespace _2dGame //Midnight Racers
                 case Keys.S:
                     downArrowDown = true;
                     break;
+                case Keys.Escape:
+                    escDown = true;
+                    if (escDown == true && isPaused == true)
+                    {
+                        isPaused = false; 
+                        gameTimer.Stop();
+                        pauseLabel.Visible = true;
+                        pauseMenuButton.Visible = true;
+                        restartButton.Visible = true;
+                        quitButton.Visible = true;
+                    }
+                    else
+                    {
+                        isPaused = true;
+                        gameTimer.Start();
+                        pauseLabel.Visible = false;
+                        pauseMenuButton.Visible = false;
+                        restartButton.Visible = false;
+                        quitButton.Visible = false;
+                    }
+                        break;
                 case Keys.Down:
                     if (speed <= 0 && multiple > 0)
                     {
@@ -188,6 +219,8 @@ namespace _2dGame //Midnight Racers
                     break;
                 case Keys.S:
                     downArrowDown = false;
+                    break;
+                case Keys.Escape:
                     break;
                 case Keys.Down:
                     break;
@@ -242,13 +275,13 @@ namespace _2dGame //Midnight Racers
                 if (location == 1)
                 {
                     y = randGen.Next(40, 90);
-                    xSpeed = -3;
+                    xSpeed = -2;
                     direction = "left";
                 }
                 else if (location == 2)
                 {
                     y = randGen.Next(140, 210);
-                    xSpeed = -3;
+                    xSpeed = -2;
                     direction = "left";
                 }
                 else if (location == 3)
@@ -291,7 +324,7 @@ namespace _2dGame //Midnight Racers
                 }
                 Car enemy = new Car(x, y, xSpeed, ySpeed, direction, crColor);
                 cars.Add(enemy);
-                
+
             }
 
             //creating roadlines
@@ -368,7 +401,8 @@ namespace _2dGame //Midnight Racers
                 Refresh();
                 Thread.Sleep(500);
 
-                Form1.ChangeScreen(this, new LossScreen());
+                loseLoad = true;
+                Form1.ChangeScreen(this, new LoadingScreen());
             }
             if(timesHit == 20)
             {
@@ -378,8 +412,11 @@ namespace _2dGame //Midnight Racers
                 Refresh();
                 Thread.Sleep(500);
 
-                Form1.ChangeScreen(this, new LossScreen());
+                loseLoad = true;
+                Form1.ChangeScreen(this, new LoadingScreen());
             }
+
+            
             //finish the game when timer runs out
             if (time == 0)
             {
@@ -393,7 +430,8 @@ namespace _2dGame //Midnight Racers
 
                 staticEr.Stop();
 
-                Form1.ChangeScreen(this, new GameOverScreen());
+                winLoad = true;
+                Form1.ChangeScreen(this, new LoadingScreen());
             }
             Refresh();
         }
@@ -532,11 +570,28 @@ namespace _2dGame //Midnight Racers
 
                 }
             }
-
-
-
-
-
         }
+
+        private void restartButton_Click(object sender, EventArgs e)
+        {
+            bgMusic.Stop();
+            staticEr.Stop();
+            resetLoad = true;
+            Form1.ChangeScreen(this, new LoadingScreen());
+        }
+
+        private void pauseMenuButton_Click(object sender, EventArgs e)
+        {
+            bgMusic.Stop();
+            staticEr.Stop();
+            Form1.ChangeScreen(this, new MenuScreen());
+        }
+
+        private void quitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+
     }
 }

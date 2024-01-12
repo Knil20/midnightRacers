@@ -70,6 +70,16 @@ namespace _2dGame.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CarImage {
+            get {
+                object obj = ResourceManager.GetObject("CarImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream explosion {
@@ -84,6 +94,16 @@ namespace _2dGame.Properties {
         internal static System.IO.UnmanagedMemoryStream glitchError {
             get {
                 return ResourceManager.GetStream("glitchError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///.
+        /// </summary>
+        internal static string highScore {
+            get {
+                return ResourceManager.GetString("highScore", resourceCulture);
             }
         }
         
@@ -150,6 +170,16 @@ namespace _2dGame.Properties {
         internal static System.Drawing.Bitmap sunsun_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("sunsun-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Untitled_design_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("Untitled_design-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

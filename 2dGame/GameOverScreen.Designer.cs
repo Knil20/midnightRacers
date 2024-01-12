@@ -41,6 +41,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.playAgainButton = new System.Windows.Forms.Button();
             this.pointTimer = new System.Windows.Forms.Timer(this.components);
+            this.highscoreLabel = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.showButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -177,11 +185,125 @@
             this.pointTimer.Interval = 20;
             this.pointTimer.Tick += new System.EventHandler(this.pointTimer_Tick);
             // 
+            // highscoreLabel
+            // 
+            this.highscoreLabel.BackColor = System.Drawing.Color.Transparent;
+            this.highscoreLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.highscoreLabel.Font = new System.Drawing.Font("Niagara Engraved", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highscoreLabel.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.highscoreLabel.Location = new System.Drawing.Point(3, 174);
+            this.highscoreLabel.Name = "highscoreLabel";
+            this.highscoreLabel.Size = new System.Drawing.Size(206, 202);
+            this.highscoreLabel.TabIndex = 12;
+            this.highscoreLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label8.Font = new System.Drawing.Font("Niagara Engraved", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.label8.Location = new System.Drawing.Point(28, 105);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(150, 53);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Highscores";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // showButton
+            // 
+            this.showButton.BackColor = System.Drawing.Color.Red;
+            this.showButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.showButton.Font = new System.Drawing.Font("Niagara Engraved", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showButton.Location = new System.Drawing.Point(86, 379);
+            this.showButton.Name = "showButton";
+            this.showButton.Size = new System.Drawing.Size(40, 70);
+            this.showButton.TabIndex = 14;
+            this.showButton.Text = "Show Highscores";
+            this.showButton.UseVisualStyleBackColor = false;
+            this.showButton.Visible = false;
+            this.showButton.Click += new System.EventHandler(this.showButton_Click);
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.Black;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Font = new System.Drawing.Font("Niagara Engraved", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.label7.Location = new System.Drawing.Point(110, 379);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(25, 10);
+            this.label7.TabIndex = 15;
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label7.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.Black;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label9.Font = new System.Drawing.Font("Niagara Engraved", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.label9.Location = new System.Drawing.Point(110, 439);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(25, 10);
+            this.label9.TabIndex = 16;
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label9.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.MidnightBlue;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Niagara Engraved", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(665, 422);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(40, 70);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Leave";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.Color.Black;
+            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label10.Font = new System.Drawing.Font("Niagara Engraved", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.label10.Location = new System.Drawing.Point(652, 422);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(25, 10);
+            this.label10.TabIndex = 18;
+            this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label10.Visible = false;
+            // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.Color.Black;
+            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label11.Font = new System.Drawing.Font("Niagara Engraved", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.label11.Location = new System.Drawing.Point(652, 482);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(25, 10);
+            this.label11.TabIndex = 19;
+            this.label11.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label11.Visible = false;
+            // 
             // GameOverScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cyan;
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.showButton);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.highscoreLabel);
             this.Controls.Add(this.playAgainButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
@@ -189,10 +311,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.scoreLabel);
-            this.Controls.Add(this.ground);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.sunLabel);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.ground);
             this.Name = "GameOverScreen";
             this.Size = new System.Drawing.Size(800, 500);
             this.ResumeLayout(false);
@@ -214,5 +338,13 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button playAgainButton;
         private System.Windows.Forms.Timer pointTimer;
+        private System.Windows.Forms.Label highscoreLabel;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button showButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }

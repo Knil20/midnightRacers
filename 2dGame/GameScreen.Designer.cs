@@ -33,6 +33,10 @@
             this.timeLabel = new System.Windows.Forms.Label();
             this.pointLabel = new System.Windows.Forms.Label();
             this.speedLabel = new System.Windows.Forms.Label();
+            this.pauseLabel = new System.Windows.Forms.Label();
+            this.pauseMenuButton = new System.Windows.Forms.Button();
+            this.quitButton = new System.Windows.Forms.Button();
+            this.restartButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -70,11 +74,74 @@
             this.speedLabel.Size = new System.Drawing.Size(300, 50);
             this.speedLabel.TabIndex = 2;
             // 
+            // pauseLabel
+            // 
+            this.pauseLabel.BackColor = System.Drawing.Color.Transparent;
+            this.pauseLabel.Font = new System.Drawing.Font("Niagara Engraved", 36F);
+            this.pauseLabel.ForeColor = System.Drawing.Color.Aqua;
+            this.pauseLabel.Location = new System.Drawing.Point(3, 141);
+            this.pauseLabel.Name = "pauseLabel";
+            this.pauseLabel.Size = new System.Drawing.Size(794, 50);
+            this.pauseLabel.TabIndex = 3;
+            this.pauseLabel.Tag = "";
+            this.pauseLabel.Text = "Game Paused";
+            this.pauseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pauseLabel.Visible = false;
+            // 
+            // pauseMenuButton
+            // 
+            this.pauseMenuButton.BackColor = System.Drawing.Color.Transparent;
+            this.pauseMenuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pauseMenuButton.Font = new System.Drawing.Font("Niagara Engraved", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pauseMenuButton.ForeColor = System.Drawing.Color.Aqua;
+            this.pauseMenuButton.Location = new System.Drawing.Point(347, 297);
+            this.pauseMenuButton.Name = "pauseMenuButton";
+            this.pauseMenuButton.Size = new System.Drawing.Size(100, 50);
+            this.pauseMenuButton.TabIndex = 5;
+            this.pauseMenuButton.Text = "Main Menu";
+            this.pauseMenuButton.UseVisualStyleBackColor = false;
+            this.pauseMenuButton.Visible = false;
+            this.pauseMenuButton.Click += new System.EventHandler(this.pauseMenuButton_Click);
+            // 
+            // quitButton
+            // 
+            this.quitButton.BackColor = System.Drawing.Color.Transparent;
+            this.quitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.quitButton.Font = new System.Drawing.Font("Niagara Engraved", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quitButton.ForeColor = System.Drawing.Color.Aqua;
+            this.quitButton.Location = new System.Drawing.Point(347, 353);
+            this.quitButton.Name = "quitButton";
+            this.quitButton.Size = new System.Drawing.Size(100, 50);
+            this.quitButton.TabIndex = 6;
+            this.quitButton.Text = "Quit";
+            this.quitButton.UseVisualStyleBackColor = false;
+            this.quitButton.Visible = false;
+            this.quitButton.Click += new System.EventHandler(this.quitButton_Click);
+            // 
+            // restartButton
+            // 
+            this.restartButton.BackColor = System.Drawing.Color.Transparent;
+            this.restartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.restartButton.Font = new System.Drawing.Font("Niagara Engraved", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.restartButton.ForeColor = System.Drawing.Color.Aqua;
+            this.restartButton.Location = new System.Drawing.Point(347, 241);
+            this.restartButton.Name = "restartButton";
+            this.restartButton.Size = new System.Drawing.Size(100, 50);
+            this.restartButton.TabIndex = 7;
+            this.restartButton.Text = "Try Again";
+            this.restartButton.UseVisualStyleBackColor = false;
+            this.restartButton.Visible = false;
+            this.restartButton.Click += new System.EventHandler(this.restartButton_Click);
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.BackColor = System.Drawing.Color.DimGray;
+            this.Controls.Add(this.restartButton);
+            this.Controls.Add(this.quitButton);
+            this.Controls.Add(this.pauseMenuButton);
+            this.Controls.Add(this.pauseLabel);
             this.Controls.Add(this.speedLabel);
             this.Controls.Add(this.pointLabel);
             this.Controls.Add(this.timeLabel);
@@ -95,5 +162,9 @@
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Label pointLabel;
         private System.Windows.Forms.Label speedLabel;
+        private System.Windows.Forms.Label pauseLabel;
+        private System.Windows.Forms.Button pauseMenuButton;
+        private System.Windows.Forms.Button quitButton;
+        private System.Windows.Forms.Button restartButton;
     }
 }

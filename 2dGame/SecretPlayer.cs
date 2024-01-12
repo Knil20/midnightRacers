@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace _2dGame
 {
-    internal class Player
+    internal class SecretPlayer
     {
         public int width = 80;
         public int height = 30;
@@ -27,10 +27,10 @@ namespace _2dGame
         public Rectangle windshield2;
         public Rectangle fWheels;
         public Rectangle bWheels;
-        
 
 
-        public Player(int _x, int _y, int _xSpeed, int _ySpeed)
+
+        public SecretPlayer(int _x, int _y, int _xSpeed, int _ySpeed)
         {
             x = _x;
             y = _y;
@@ -38,13 +38,13 @@ namespace _2dGame
             ySpeed = _ySpeed;
 
             headLight = new Rectangle(x + width - 5, y + height - 5, 5, 5);
-            headLight2 = new Rectangle(x + width  - 5, y, 5, 5);
+            headLight2 = new Rectangle(x + width - 5, y, 5, 5);
             tailLight = new Rectangle(x, y + height - 5, 5, 5);
             tailLight2 = new Rectangle(x, y, 5, 5);
             windshield = new Rectangle(x + width - 25, y + 2, 15, 26);
             windshield2 = new Rectangle(x + width - 70, y + 2, 10, 26);
             fWheels = new Rectangle(x + width - 25, y - 3, 15, 36);
-            bWheels = new Rectangle(x + width - 70, y - 3, 15, 36);        
+            bWheels = new Rectangle(x + width - 70, y - 3, 15, 36);
         }
 
         public void Move(string direction)
@@ -92,7 +92,6 @@ namespace _2dGame
                 bWheels = new Rectangle(bWheel, y - 3, 15, 36);
             }
 
-
             if (direction == "up")
             {
                 y -= ySpeed;
@@ -105,7 +104,7 @@ namespace _2dGame
                 int fWheel = fWheels.Y - ySpeed;
                 int bWheel = bWheels.Y - ySpeed;
 
-                headLight = new Rectangle(x + width - 5,headY, 5, 5);
+                headLight = new Rectangle(x + width - 5, headY, 5, 5);
                 headLight2 = new Rectangle(x + width - 5, headY2, 5, 5);
                 tailLight = new Rectangle(x, tailY, 5, 5);
                 tailLight2 = new Rectangle(x, tailY2, 5, 5);

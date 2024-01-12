@@ -25,7 +25,8 @@ namespace _2dGame
         private void startButton_Click(object sender, EventArgs e)
         {
             menu.Stop();
-            Form1.ChangeScreen(this, new GameScreen());
+            GameScreen.menuLoad = true;
+            Form1.ChangeScreen(this, new LoadingScreen());
         }
 
         private void quitButton_Click(object sender, EventArgs e)

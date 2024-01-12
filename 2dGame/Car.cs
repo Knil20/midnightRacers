@@ -135,7 +135,7 @@ namespace _2dGame
 
                 boom.Play();
 
-                if(GameScreen.speed <= -30)
+                if(GameScreen.speed <= -40)
                 {
                     GameScreen.criticalHit = true;
                 }

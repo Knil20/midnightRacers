@@ -117,6 +117,16 @@ namespace _2dGame.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nightmareImage {
+            get {
+                object obj = ResourceManager.GetObject("nightmareImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream smashingWindshields {
@@ -170,6 +180,16 @@ namespace _2dGame.Properties {
         internal static System.Drawing.Bitmap sunsun_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("sunsun-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap theGlitch {
+            get {
+                object obj = ResourceManager.GetObject("theGlitch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

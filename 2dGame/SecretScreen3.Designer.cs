@@ -1,6 +1,6 @@
 ﻿namespace _2dGame
 {
-    partial class SecretScreen1
+    partial class SecretScreen3
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,32 +29,31 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.secretTimer1 = new System.Windows.Forms.Timer(this.components);
+            this.secretTimer3 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // secretTimer1
+            // secretTimer3
             // 
-            this.secretTimer1.Interval = 20;
-            this.secretTimer1.Tick += new System.EventHandler(this.secretTimer1_Tick);
+            this.secretTimer3.Interval = 20;
+            this.secretTimer3.Tick += new System.EventHandler(this.secretTimer3_Tick);
             // 
-            // SecretScreen1
+            // SecretScreen3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGreen;
             this.DoubleBuffered = true;
-            this.Name = "SecretScreen1";
+            this.Name = "SecretScreen3";
             this.Size = new System.Drawing.Size(800, 500);
-            this.UseWaitCursor = true;
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.SecretScreen1_Paint);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SecretScreen1_KeyUp);
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.SecretScreen1_PreviewKeyDown);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.SecretScreen3_Paint);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SecretScreen3_KeyUp);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.SecretScreen3_PreviewKeyDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Timer secretTimer1;
+        private System.Windows.Forms.Timer secretTimer3;
     }
 }

@@ -32,6 +32,7 @@
             this.startButton = new System.Windows.Forms.Button();
             this.quitButton = new System.Windows.Forms.Button();
             this.helpButton = new System.Windows.Forms.Button();
+            this.secretButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -90,11 +91,26 @@
             this.helpButton.UseVisualStyleBackColor = false;
             this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
             // 
+            // secretButton
+            // 
+            this.secretButton.BackColor = System.Drawing.Color.Transparent;
+            this.secretButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.secretButton.Font = new System.Drawing.Font("Niagara Engraved", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.secretButton.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.secretButton.Location = new System.Drawing.Point(3, 3);
+            this.secretButton.Name = "secretButton";
+            this.secretButton.Size = new System.Drawing.Size(100, 50);
+            this.secretButton.TabIndex = 5;
+            this.secretButton.Text = "Secret Game";
+            this.secretButton.UseVisualStyleBackColor = false;
+            this.secretButton.Click += new System.EventHandler(this.secretButton_Click);
+            // 
             // MenuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.secretButton);
             this.Controls.Add(this.helpButton);
             this.Controls.Add(this.quitButton);
             this.Controls.Add(this.startButton);
@@ -112,5 +128,6 @@
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button quitButton;
         private System.Windows.Forms.Button helpButton;
+        private System.Windows.Forms.Button secretButton;
     }
 }

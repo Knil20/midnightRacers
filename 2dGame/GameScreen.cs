@@ -48,10 +48,12 @@ namespace _2dGame //Midnight Racers
         public static int timesHit = 0;
 
         public static Boolean criticalHit = false;
+        public static Boolean hasStar = true;
         public static Boolean winLoad = false;
         public static Boolean loseLoad = false;
         public static Boolean menuLoad = false;
         public static Boolean resetLoad = false;
+        public static Boolean secretLoad = false;
 
 
         Random randGen = new Random();
@@ -424,6 +426,7 @@ namespace _2dGame //Midnight Racers
 
                 penalty = collision * -100;
                 points += penalty;
+                bgMusic.Stop();
 
                 Refresh();
                 Thread.Sleep(1000);
@@ -477,99 +480,103 @@ namespace _2dGame //Midnight Racers
             e.Graphics.FillRectangle(hero.shieldBrush, hero.windshield2);
 
             //flashing the "Glitch" effect
-            if (time == 5000 || time == 4000 || time == 4500 || time == 3000 || time == 3667 || time == 3334 || time == 2000 || time == 2750 || time == 2500 || time == 2250 || time == 1000 || time == 1100 || time == 1075 || time == 1050 || time == 1025)
+            if(hasStar == false)
             {
-                e.Graphics.FillRectangle(bitBrush, 0, 2, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 22, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 42, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 62, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 82, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 102, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 122, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 142, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 162, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 182, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 202, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 222, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 242, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 262, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 282, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 302, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 322, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 342, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 362, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 382, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 402, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 422, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 442, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 462, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 482, 800, 2);
-                glitch.Play();
-                points -= 10;
-               
-            }
-            //permanently drawing the "Glitch" effect, playing sounds, changing colors
-            if (time <= 1000)
-            {
-                e.Graphics.FillRectangle(bitBrush, 0, 2, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 22, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 42, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 62, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 82, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 102, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 122, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 142, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 162, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 182, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 202, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 222, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 242, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 262, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 282, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 302, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 322, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 342, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 362, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 382, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 402, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 422, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 442, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 462, 800, 2);
-                e.Graphics.FillRectangle(bitBrush, 0, 482, 800, 2);
+                if (time == 5000 || time == 4000 || time == 4500 || time == 3000 || time == 3667 || time == 3334 || time == 2000 || time == 2750 || time == 2500 || time == 2250 || time == 1000 || time == 1100 || time == 1075 || time == 1050 || time == 1025)
+                {
+                    e.Graphics.FillRectangle(bitBrush, 0, 2, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 22, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 42, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 62, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 82, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 102, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 122, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 142, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 162, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 182, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 202, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 222, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 242, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 262, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 282, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 302, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 322, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 342, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 362, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 382, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 402, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 422, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 442, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 462, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 482, 800, 2);
+                    glitch.Play();
+                    points -= 10;
 
-                if (time <= 750)
-                {
-                    bitBrush.Color = Color.Purple;
-                    timeLabel.Text = "Time = ERROR";
-                    bgMusic.Stop();
-                    staticEr.Play();
                 }
-                if (time <= 500)
+                //permanently drawing the "Glitch" effect, playing sounds, changing colors
+                if (time <= 1000)
                 {
-                    lineBrush.Color = Color.Purple;
-                    sideBrush.Color = Color.Purple;
-                    speedLabel.Text = "Speed = ERROR";
-                }
-                if (time <= 250)
-                {
-                    heroBrush.Color = Color.Purple;
-                    hero.wheelBrush.Color = Color.Purple;
-                    hero.headLightBrush.Color = Color.Purple;
-                    hero.tailLightBrush.Color = Color.Purple;
-                    hero.shieldBrush.Color = Color.Purple;
-                    pointLabel.Text = "Points = ERROR";
+                    e.Graphics.FillRectangle(bitBrush, 0, 2, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 22, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 42, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 62, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 82, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 102, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 122, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 142, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 162, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 182, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 202, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 222, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 242, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 262, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 282, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 302, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 322, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 342, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 362, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 382, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 402, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 422, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 442, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 462, 800, 2);
+                    e.Graphics.FillRectangle(bitBrush, 0, 482, 800, 2);
 
-                    foreach (Car c in cars)
+                    if (time <= 750)
                     {
-                        c.bodyBrush.Color = Color.Purple;
-                        c.wheelBrush.Color = Color.Purple;
-                        c.headLightBrush.Color = Color.Purple;
-                        c.tailLightBrush.Color = Color.Purple;
-                        c.shieldBrush.Color = Color.Purple;
+                        bitBrush.Color = Color.Purple;
+                        timeLabel.Text = "Time = ERROR";
+                        bgMusic.Stop();
+                        staticEr.Play();
                     }
+                    if (time <= 500)
+                    {
+                        lineBrush.Color = Color.Purple;
+                        sideBrush.Color = Color.Purple;
+                        speedLabel.Text = "Speed = ERROR";
+                    }
+                    if (time <= 250)
+                    {
+                        heroBrush.Color = Color.Purple;
+                        hero.wheelBrush.Color = Color.Purple;
+                        hero.headLightBrush.Color = Color.Purple;
+                        hero.tailLightBrush.Color = Color.Purple;
+                        hero.shieldBrush.Color = Color.Purple;
+                        pointLabel.Text = "Points = ERROR";
 
+                        foreach (Car c in cars)
+                        {
+                            c.bodyBrush.Color = Color.Purple;
+                            c.wheelBrush.Color = Color.Purple;
+                            c.headLightBrush.Color = Color.Purple;
+                            c.tailLightBrush.Color = Color.Purple;
+                            c.shieldBrush.Color = Color.Purple;
+                        }
+
+                    }
                 }
             }
+            
         }
 
         private void restartButton_Click(object sender, EventArgs e)

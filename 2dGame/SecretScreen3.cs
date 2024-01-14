@@ -7,14 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media.Media3D;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
-using System.Media;
-using System.IO;
 
 namespace _2dGame
 {
-    public partial class SecretScreen1 : UserControl
+    public partial class SecretScreen3 : UserControl
     {
         Player hero;
 
@@ -34,34 +30,17 @@ namespace _2dGame
         int rainSpeedX = -10;
 
         Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
-        public static Boolean isBack = false;
 
-        System.Windows.Media.MediaPlayer secretMusic = new System.Windows.Media.MediaPlayer();
-
-        public SecretScreen1()
+        public SecretScreen3()
         {
             InitializeComponent();
 
-            secretTimer1.Start();
+            secretTimer3.Start();
 
-            if (isBack == false)
-            {
-                secretMusic.Open(new Uri(Application.StartupPath + "/Resources/1-15. Smashing Windshields.wav"));
-                secretMusic.MediaEnded += new EventHandler(secretMusic_MediaEnded);
-                secretMusic.Play();
-
-                hero = new Player(125, 30, 4, 4);
-
-            }
-            else
-            {
-                hero = new Player(0, 375, 4, 4);
-                direction = "right";
-            }
-
+            hero = new Player(125, 30, 4, 4);
         }
 
-        private void SecretScreen1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void SecretScreen3_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -80,7 +59,7 @@ namespace _2dGame
             }
         }
 
-        private void SecretScreen1_KeyUp(object sender, KeyEventArgs e)
+        private void SecretScreen3_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -99,7 +78,7 @@ namespace _2dGame
             }
         }
 
-        private void secretTimer1_Tick(object sender, EventArgs e)
+        private void secretTimer3_Tick(object sender, EventArgs e)
         {
             //Move hero
             if (leftArrowDown && hero.x > 0)
@@ -146,6 +125,7 @@ namespace _2dGame
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
 
+
             //remove raindrops
             for (int i = 0; i < rain.Count; i++)
             {
@@ -159,13 +139,12 @@ namespace _2dGame
             Refresh();
         }
 
-        private void SecretScreen1_Paint(object sender, PaintEventArgs e)
+        private void SecretScreen3_Paint(object sender, PaintEventArgs e)
         {
             //drawing the road
-            e.Graphics.FillRectangle(roadBrush, 100, 0, 125, 200);
-            e.Graphics.FillRectangle(roadBrush, 100, 75, 600, 125);
-            e.Graphics.FillRectangle(roadBrush, 600, 75, 125, 375);
-            e.Graphics.FillRectangle(roadBrush, 0, 325, 700, 125);
+            e.Graphics.FillRectangle(roadBrush, 100, 0, 125, 300);
+            e.Graphics.FillRectangle(roadBrush, 100, 175, 500, 125);
+            e.Graphics.FillRectangle(roadBrush, 475, 175, 125, 400);
 
             if (direction == "up")
             {
@@ -226,29 +205,33 @@ namespace _2dGame
                 e.Graphics.DrawImage(Properties.Resources.CarImage, hero.x, hero.y, hero.width, hero.height);
             }
 
+            if (hero.y >= 450)
+            {
+                e.Graphics.DrawImage(Properties.Resources.theGlitch, 450, 250, 100, 100);
+            }
 
             for (int i = 0; i < rain.Count(); i++)
             {
                 e.Graphics.FillEllipse(rainBrush, rain[i]);
+
             }
-
         }
-
         public void Collision()
         {
-            Rectangle switchRec = new Rectangle(0, 325, 5, 125);
+            Rectangle switchRec = new Rectangle(475, 495, 125, 5);
+            Rectangle switchBackRec = new Rectangle(100, 0, 125, 5);
             Rectangle playerRec = new Rectangle(hero.x, hero.y, hero.width, hero.height);
 
-            if (switchRec.IntersectsWith(playerRec) && direction == "left")
+            if (switchRec.IntersectsWith(playerRec) && direction == "down")
             {
-                isBack = false;
+                Form1.ChangeScreen(this, new MenuScreen());
+            }
+
+            if (switchBackRec.IntersectsWith(playerRec) && direction == "up")
+            {
+                SecretScreen2.isBack = true;
                 Form1.ChangeScreen(this, new SecretScreen2());
             }
-        }
-        private void secretMusic_MediaEnded(object sender, EventArgs e)
-        {
-            secretMusic.Stop();
-            secretMusic.Play();
         }
     }
 }

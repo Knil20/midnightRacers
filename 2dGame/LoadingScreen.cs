@@ -59,6 +59,11 @@ namespace _2dGame
                     loadingTimer.Stop();
                     Form1.ChangeScreen(this, new GameOverScreen());
                 }
+                else if (GameScreen.secretLoad == true)
+                {
+                    loadingTimer.Stop();
+                    Form1.ChangeScreen(this, new SecretScreen1());
+                }
             }
             
 

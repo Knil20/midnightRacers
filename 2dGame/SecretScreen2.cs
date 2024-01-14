@@ -7,18 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media.Media3D;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using System.Media;
-using System.IO;
 
 namespace _2dGame
 {
-    public partial class SecretScreen1 : UserControl
+    public partial class SecretScreen2 : UserControl
     {
         Player hero;
 
-        string direction = "down";
+        string direction = "left";
 
         SolidBrush heroBrush = new SolidBrush(Color.BlueViolet);
         SolidBrush roadBrush = new SolidBrush(Color.SaddleBrown);
@@ -34,34 +31,28 @@ namespace _2dGame
         int rainSpeedX = -10;
 
         Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
+
         public static Boolean isBack = false;
 
-        System.Windows.Media.MediaPlayer secretMusic = new System.Windows.Media.MediaPlayer();
-
-        public SecretScreen1()
+        public SecretScreen2()
         {
             InitializeComponent();
 
-            secretTimer1.Start();
+            secretTimer2.Start();
 
             if (isBack == false)
             {
-                secretMusic.Open(new Uri(Application.StartupPath + "/Resources/1-15. Smashing Windshields.wav"));
-                secretMusic.MediaEnded += new EventHandler(secretMusic_MediaEnded);
-                secretMusic.Play();
-
-                hero = new Player(125, 30, 4, 4);
-
+                hero = new Player(720, 70, 4, 4);
             }
             else
             {
-                hero = new Player(0, 375, 4, 4);
-                direction = "right";
+                hero = new Player(425, 450, 4, 4);
+                direction = "up";
             }
-
+            
         }
 
-        private void SecretScreen1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void SecretScreen2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -80,7 +71,7 @@ namespace _2dGame
             }
         }
 
-        private void SecretScreen1_KeyUp(object sender, KeyEventArgs e)
+        private void SecretScreen2_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -99,7 +90,7 @@ namespace _2dGame
             }
         }
 
-        private void secretTimer1_Tick(object sender, EventArgs e)
+        private void secretTimer2_Tick(object sender, EventArgs e)
         {
             //Move hero
             if (leftArrowDown && hero.x > 0)
@@ -145,6 +136,7 @@ namespace _2dGame
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
+           
 
             //remove raindrops
             for (int i = 0; i < rain.Count; i++)
@@ -159,13 +151,13 @@ namespace _2dGame
             Refresh();
         }
 
-        private void SecretScreen1_Paint(object sender, PaintEventArgs e)
+        private void SecretScreen2_Paint(object sender, PaintEventArgs e)
         {
             //drawing the road
-            e.Graphics.FillRectangle(roadBrush, 100, 0, 125, 200);
-            e.Graphics.FillRectangle(roadBrush, 100, 75, 600, 125);
-            e.Graphics.FillRectangle(roadBrush, 600, 75, 125, 375);
-            e.Graphics.FillRectangle(roadBrush, 0, 325, 700, 125);
+            e.Graphics.FillRectangle(roadBrush, 0, 25, 800, 125);
+            e.Graphics.FillRectangle(roadBrush, 0, 25, 125, 400);
+            e.Graphics.FillRectangle(roadBrush, 0, 300, 525, 125);
+            e.Graphics.FillRectangle(roadBrush, 400, 400, 125, 100);
 
             if (direction == "up")
             {
@@ -225,30 +217,37 @@ namespace _2dGame
             {
                 e.Graphics.DrawImage(Properties.Resources.CarImage, hero.x, hero.y, hero.width, hero.height);
             }
-
+            
+            if (hero.y >= 450 && isBack == false)
+            {
+                e.Graphics.DrawImage(Properties.Resources.theGlitch, 350, 50, 100, 100);
+            }
 
             for (int i = 0; i < rain.Count(); i++)
             {
                 e.Graphics.FillEllipse(rainBrush, rain[i]);
+
             }
 
+            
         }
-
         public void Collision()
         {
-            Rectangle switchRec = new Rectangle(0, 325, 5, 125);
+            Rectangle switchRec = new Rectangle(400, 495, 125, 5);
+            Rectangle switchBackRec = new Rectangle(795, 25, 5, 125);
             Rectangle playerRec = new Rectangle(hero.x, hero.y, hero.width, hero.height);
 
-            if (switchRec.IntersectsWith(playerRec) && direction == "left")
+            if (switchRec.IntersectsWith(playerRec) && direction == "down")
             {
                 isBack = false;
-                Form1.ChangeScreen(this, new SecretScreen2());
+                Form1.ChangeScreen(this, new SecretScreen3());
             }
-        }
-        private void secretMusic_MediaEnded(object sender, EventArgs e)
-        {
-            secretMusic.Stop();
-            secretMusic.Play();
+
+            if (switchBackRec.IntersectsWith(playerRec) && direction == "right")
+            {
+                SecretScreen1.isBack = true;
+                Form1.ChangeScreen(this, new SecretScreen1());
+            }
         }
     }
 }

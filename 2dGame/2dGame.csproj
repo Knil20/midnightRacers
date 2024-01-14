@@ -105,6 +105,18 @@
     <Compile Include="SecretScreen1.Designer.cs">
       <DependentUpon>SecretScreen1.cs</DependentUpon>
     </Compile>
+    <Compile Include="SecretScreen2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SecretScreen2.Designer.cs">
+      <DependentUpon>SecretScreen2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SecretScreen3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SecretScreen3.Designer.cs">
+      <DependentUpon>SecretScreen3.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +150,12 @@
     </Compile>
     <EmbeddedResource Include="SecretScreen1.resx">
       <DependentUpon>SecretScreen1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SecretScreen2.resx">
+      <DependentUpon>SecretScreen2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SecretScreen3.resx">
+      <DependentUpon>SecretScreen3.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -204,6 +222,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CarImage %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nightmareImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\theGlitch.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using Microsoft.Win32.SafeHandles;
 
 namespace _2dGame
 {
@@ -39,6 +40,13 @@ namespace _2dGame
         {
             menu.Stop();
             Form1.ChangeScreen(this, new InstructionScreen());
+        }
+
+        private void secretButton_Click(object sender, EventArgs e)
+        {
+            menu.Stop();
+            GameScreen.secretLoad = true;
+            Form1.ChangeScreen(this, new LoadingScreen());
         }
     }
 }

@@ -58,6 +58,7 @@ namespace _2dGame
                 hero = new Player(0, 375, 4, 4);
                 direction = "right";
             }
+            isBack = false;
 
         }
 

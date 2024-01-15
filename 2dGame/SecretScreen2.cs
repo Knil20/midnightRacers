@@ -29,6 +29,7 @@ namespace _2dGame
         int rainSize = 6;
         int rainSpeedY = 10;
         int rainSpeedX = -10;
+        int isMonster = 0;
 
         Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
 
@@ -46,10 +47,11 @@ namespace _2dGame
             }
             else
             {
+                isMonster++;
                 hero = new Player(425, 450, 4, 4);
                 direction = "up";
             }
-            
+            isBack = false;
         }
 
         private void SecretScreen2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -218,7 +220,7 @@ namespace _2dGame
                 e.Graphics.DrawImage(Properties.Resources.CarImage, hero.x, hero.y, hero.width, hero.height);
             }
             
-            if (hero.y >= 450 && isBack == false)
+            if (hero.y >= 450 && isMonster == 0)
             {
                 e.Graphics.DrawImage(Properties.Resources.theGlitch, 350, 50, 100, 100);
             }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace _2dGame
 {
-    public partial class SecretScreen3 : UserControl
+    public partial class SecretScreen4 : UserControl
     {
         Player hero;
 
@@ -28,33 +28,21 @@ namespace _2dGame
         int rainSize = 6;
         int rainSpeedY = 10;
         int rainSpeedX = -10;
-        int isMonster = 0;
+        
 
         Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
 
-        public static Boolean isBack = false;
-
-        public SecretScreen3()
+        public SecretScreen4()
         {
             InitializeComponent();
 
-            secretTimer3.Start();
+            secretTimer4.Start();
 
+            hero = new Player(625, 30, 4, 4);
 
-            if (isBack == false)
-            {
-                hero = new Player(125, 30, 4, 4);
-            }
-            else
-            {
-                isMonster++;
-                hero = new Player(500, 450, 4, 4);
-                direction = "up";
-            }
-            isBack = false;
         }
 
-        private void SecretScreen3_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void SecretScreen4_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -73,7 +61,7 @@ namespace _2dGame
             }
         }
 
-        private void SecretScreen3_KeyUp(object sender, KeyEventArgs e)
+        private void SecretScreen4_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -92,7 +80,7 @@ namespace _2dGame
             }
         }
 
-        private void secretTimer3_Tick(object sender, EventArgs e)
+        private void secretTimer4_Tick(object sender, EventArgs e)
         {
             //Move hero
             if (leftArrowDown && hero.x > 0)
@@ -153,12 +141,13 @@ namespace _2dGame
             Refresh();
         }
 
-        private void SecretScreen3_Paint(object sender, PaintEventArgs e)
+        private void SecretScreen4_Paint(object sender, PaintEventArgs e)
         {
             //drawing the road
-            e.Graphics.FillRectangle(roadBrush, 100, 0, 125, 300);
-            e.Graphics.FillRectangle(roadBrush, 100, 175, 500, 125);
-            e.Graphics.FillRectangle(roadBrush, 475, 175, 125, 400);
+            e.Graphics.FillRectangle(roadBrush, 600, 0, 125, 200);
+            e.Graphics.FillRectangle(roadBrush, 50, 75, 550, 125);
+            e.Graphics.FillRectangle(roadBrush, 50, 75, 125, 400);
+            e.Graphics.FillRectangle(roadBrush, 50, 350, 750, 125);
 
             if (direction == "up")
             {
@@ -219,7 +208,7 @@ namespace _2dGame
                 e.Graphics.DrawImage(Properties.Resources.CarImage, hero.x, hero.y, hero.width, hero.height);
             }
 
-            if (hero.y >= 450 && isMonster == 0)
+            if (hero.y >= 450)
             {
                 e.Graphics.DrawImage(Properties.Resources.theGlitch, 450, 250, 100, 100);
             }
@@ -232,19 +221,19 @@ namespace _2dGame
         }
         public void Collision()
         {
-            Rectangle switchRec = new Rectangle(475, 495, 125, 5);
-            Rectangle switchBackRec = new Rectangle(100, 0, 125, 5);
+            Rectangle switchRec = new Rectangle(795, 350, 5, 125);
+            Rectangle switchBackRec = new Rectangle(600, 0, 125, 5);
             Rectangle playerRec = new Rectangle(hero.x, hero.y, hero.width, hero.height);
 
-            if (switchRec.IntersectsWith(playerRec) && direction == "down")
+            if (switchRec.IntersectsWith(playerRec) && direction == "right")
             {
-                Form1.ChangeScreen(this, new SecretScreen4());
+                Form1.ChangeScreen(this, new MenuScreen());
             }
 
             if (switchBackRec.IntersectsWith(playerRec) && direction == "up")
             {
-                SecretScreen2.isBack = true;
-                Form1.ChangeScreen(this, new SecretScreen2());
+                SecretScreen3.isBack = true;
+                Form1.ChangeScreen(this, new SecretScreen3());
             }
         }
     }

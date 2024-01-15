@@ -18,7 +18,7 @@ namespace _2dGame
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            Form1.ChangeScreen(this, new SecretScreen2());
+            Form1.ChangeScreen(this, new SecretScreen4());
         }
         public static void ChangeScreen(object sender, UserControl next)
         {

@@ -10,15 +10,18 @@ using System.Windows.Forms;
 
 namespace _2dGame
 {
-    public partial class SecretScreen3 : UserControl
+    public partial class SecretScreen5 : UserControl
     {
         Player hero;
 
-        string direction = "down";
+        string direction = "right";
 
         SolidBrush heroBrush = new SolidBrush(Color.BlueViolet);
         SolidBrush roadBrush = new SolidBrush(Color.SaddleBrown);
         SolidBrush rainBrush = new SolidBrush(Color.Navy);
+        SolidBrush drivewayBrush = new SolidBrush(Color.Gray);
+        SolidBrush houseBrush = new SolidBrush(Color.DarkRed);
+        SolidBrush roofBrush = new SolidBrush(Color.Sienna);
 
         Random randGen = new Random();
         int randValue = 0;
@@ -28,33 +31,19 @@ namespace _2dGame
         int rainSize = 6;
         int rainSpeedY = 10;
         int rainSpeedX = -10;
-        int isMonster = 0;
+
 
         Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
-
-        public static Boolean isBack = false;
-
-        public SecretScreen3()
+        public SecretScreen5()
         {
             InitializeComponent();
 
-            secretTimer3.Start();
+            secretTimer5.Start();
 
-
-            if (isBack == false)
-            {
-                hero = new Player(125, 30, 4, 4);
-            }
-            else
-            {
-                isMonster++;
-                hero = new Player(500, 450, 4, 4);
-                direction = "up";
-            }
-            isBack = false;
+            hero = new Player(0, 400, 4, 4); 
         }
 
-        private void SecretScreen3_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void SecretScreen5_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -73,7 +62,7 @@ namespace _2dGame
             }
         }
 
-        private void SecretScreen3_KeyUp(object sender, KeyEventArgs e)
+        private void SecretScreen5_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -92,7 +81,7 @@ namespace _2dGame
             }
         }
 
-        private void secretTimer3_Tick(object sender, EventArgs e)
+        private void secretTimer5_Tick(object sender, EventArgs e)
         {
             //Move hero
             if (leftArrowDown && hero.x > 0)
@@ -153,12 +142,14 @@ namespace _2dGame
             Refresh();
         }
 
-        private void SecretScreen3_Paint(object sender, PaintEventArgs e)
+        private void SecretScreen5_Paint(object sender, PaintEventArgs e)
         {
             //drawing the road
-            e.Graphics.FillRectangle(roadBrush, 100, 0, 125, 300);
-            e.Graphics.FillRectangle(roadBrush, 100, 175, 500, 125);
-            e.Graphics.FillRectangle(roadBrush, 475, 175, 125, 400);
+            e.Graphics.FillRectangle(roadBrush, 0, 350, 600, 125);
+            e.Graphics.FillRectangle(drivewayBrush, 300, 175, 125, 175);
+            e.Graphics.FillRectangle(houseBrush, 275, 0, 400, 175);
+            e.Graphics.FillRectangle(roofBrush, 260, 0, 430, 5);
+
 
             if (direction == "up")
             {
@@ -219,9 +210,9 @@ namespace _2dGame
                 e.Graphics.DrawImage(Properties.Resources.CarImage, hero.x, hero.y, hero.width, hero.height);
             }
 
-            if (hero.y >= 450 && isMonster == 0)
+            if (hero.y <= 215)
             {
-                e.Graphics.DrawImage(Properties.Resources.theGlitch, 450, 250, 100, 100);
+                e.Graphics.DrawImage(Properties.Resources.theGlitch, 400, 150, 100, 100);
             }
 
             for (int i = 0; i < rain.Count(); i++)
@@ -232,20 +223,20 @@ namespace _2dGame
         }
         public void Collision()
         {
-            Rectangle switchRec = new Rectangle(475, 495, 125, 5);
-            Rectangle switchBackRec = new Rectangle(100, 0, 125, 5);
+            Rectangle switchRec = new Rectangle(300, 200, 125, 5);
+            Rectangle switchBackRec = new Rectangle(0, 400, 5, 125);
             Rectangle playerRec = new Rectangle(hero.x, hero.y, hero.width, hero.height);
 
-            if (switchRec.IntersectsWith(playerRec) && direction == "down")
+            if (switchRec.IntersectsWith(playerRec) && direction == "up")
             {
-                Form1.ChangeScreen(this, new SecretScreen4());
-                secretTimer3.Enabled = false;
+                Form1.ChangeScreen(this, new SecretLoadingScreen());
+                secretTimer5.Enabled = false;   
             }
 
-            if (switchBackRec.IntersectsWith(playerRec) && direction == "up")
+            if (switchBackRec.IntersectsWith(playerRec) && direction == "left")
             {
-                SecretScreen2.isBack = true;
-                Form1.ChangeScreen(this, new SecretScreen2());
+                SecretScreen4.isBack = true;
+                Form1.ChangeScreen(this, new SecretScreen4());
             }
         }
     }

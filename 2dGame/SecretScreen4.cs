@@ -28,9 +28,11 @@ namespace _2dGame
         int rainSize = 6;
         int rainSpeedY = 10;
         int rainSpeedX = -10;
-        
+        int isMonster = 0;
+
 
         Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
+        public static Boolean isBack = false;
 
         public SecretScreen4()
         {
@@ -38,7 +40,18 @@ namespace _2dGame
 
             secretTimer4.Start();
 
-            hero = new Player(625, 30, 4, 4);
+            if (isBack == false)
+            {
+                hero = new Player(625, 30, 4, 4);
+            }
+            else
+            {
+                isMonster++;
+                hero = new Player(720, 400, 4, 4);
+                direction = "left";
+            }
+            isBack = false;
+            
 
         }
 
@@ -121,11 +134,11 @@ namespace _2dGame
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
-            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
-            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
-            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
-            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
-            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 0, rainSize, rainSize));
+            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 100, rainSize, rainSize));
+            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 200, rainSize, rainSize));
+            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 300, rainSize, rainSize));
+            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 400, rainSize, rainSize));
+            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 500, rainSize, rainSize));
 
 
             //remove raindrops
@@ -208,9 +221,9 @@ namespace _2dGame
                 e.Graphics.DrawImage(Properties.Resources.CarImage, hero.x, hero.y, hero.width, hero.height);
             }
 
-            if (hero.y >= 450)
+            if (hero.x >= 710 && isMonster == 0)
             {
-                e.Graphics.DrawImage(Properties.Resources.theGlitch, 450, 250, 100, 100);
+                e.Graphics.DrawImage(Properties.Resources.theGlitch, 750, 0, 100, 100);
             }
 
             for (int i = 0; i < rain.Count(); i++)
@@ -227,7 +240,8 @@ namespace _2dGame
 
             if (switchRec.IntersectsWith(playerRec) && direction == "right")
             {
-                Form1.ChangeScreen(this, new MenuScreen());
+                Form1.ChangeScreen(this, new SecretScreen5());
+                secretTimer4.Enabled = false;
             }
 
             if (switchBackRec.IntersectsWith(playerRec) && direction == "up")

@@ -40,7 +40,22 @@ namespace _2dGame
 
             secretTimer5.Start();
 
-            hero = new Player(0, 400, 4, 4); 
+            if(SecretLoadingScreen.hacked == false)
+            {
+                hero = new Player(0, 400, 4, 4);
+            }
+            else 
+            {
+                hero = new Player(325, 200, 4, 4);
+                direction = "down";
+
+                this.BackColor = Color.Black;
+
+                houseBrush.Color = Color.DarkViolet;
+                roofBrush.Color = Color.DarkViolet;
+                drivewayBrush.Color = Color.DarkViolet;
+            }
+
         }
 
         private void SecretScreen5_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -138,6 +153,10 @@ namespace _2dGame
                 }
             }
 
+            if(hero.x <= 100 && SecretLoadingScreen.hacked == true)
+            {
+                roadBrush.Color = Color.Black;
+            }
 
             Refresh();
         }
@@ -210,7 +229,7 @@ namespace _2dGame
                 e.Graphics.DrawImage(Properties.Resources.CarImage, hero.x, hero.y, hero.width, hero.height);
             }
 
-            if (hero.y <= 215)
+            if (hero.y <= 215 && SecretLoadingScreen.hacked == false)
             {
                 e.Graphics.DrawImage(Properties.Resources.theGlitch, 400, 150, 100, 100);
             }
@@ -227,10 +246,10 @@ namespace _2dGame
             Rectangle switchBackRec = new Rectangle(0, 400, 5, 125);
             Rectangle playerRec = new Rectangle(hero.x, hero.y, hero.width, hero.height);
 
-            if (switchRec.IntersectsWith(playerRec) && direction == "up")
+            if (switchRec.IntersectsWith(playerRec) && direction == "up" && SecretLoadingScreen.hacked == false)
             {
                 Form1.ChangeScreen(this, new SecretLoadingScreen());
-                secretTimer5.Enabled = false;   
+                secretTimer5.Enabled = false;
             }
 
             if (switchBackRec.IntersectsWith(playerRec) && direction == "left")

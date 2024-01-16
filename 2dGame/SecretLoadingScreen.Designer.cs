@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.runLabel = new System.Windows.Forms.Label();
+            this.sLTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // runLabel
@@ -42,6 +44,11 @@
             this.runLabel.TabIndex = 0;
             this.runLabel.Text = "HE\'S HERE!!!";
             this.runLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // sLTimer
+            // 
+            this.sLTimer.Interval = 20;
+            this.sLTimer.Tick += new System.EventHandler(this.sLTimer_Tick);
             // 
             // SecretLoadingScreen
             // 
@@ -58,5 +65,6 @@
         #endregion
 
         private System.Windows.Forms.Label runLabel;
+        private System.Windows.Forms.Timer sLTimer;
     }
 }

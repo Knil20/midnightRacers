@@ -160,12 +160,6 @@ namespace _2dGame
                     rain.RemoveAt(i);
                 }
             }
-
-            if(SecretLoadingScreen.hacked == true)
-            {
-                
-                
-            }
             Refresh();
         }
 

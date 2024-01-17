@@ -40,18 +40,39 @@ namespace _2dGame
 
             secretTimer4.Start();
 
-            if (isBack == false)
+            if(SecretLoadingScreen.hacked == false)
             {
-                hero = new Player(625, 30, 4, 4);
+                if (isBack == false)
+                {
+                    hero = new Player(625, 30, 4, 4);
+                }
+                else
+                {
+                    isMonster++;
+                    hero = new Player(720, 400, 4, 4);
+                    direction = "left";
+                }
+                
             }
             else
             {
-                isMonster++;
                 hero = new Player(720, 400, 4, 4);
                 direction = "left";
+
+
+                this.BackColor = Color.Black;
+
+                roadBrush.Color = Color.DarkViolet;
+                rainBrush.Color = Color.DarkViolet;
+
+                rainSpeedY *= -1;
+                rainSpeedX = 0;
+
+                isMonster++;
             }
             isBack = false;
-            
+
+
 
         }
 

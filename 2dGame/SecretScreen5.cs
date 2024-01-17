@@ -250,12 +250,15 @@ namespace _2dGame
 
             if (hero.x <= 100 && SecretLoadingScreen.hacked == true)
             {
+                //this.BackColor = Color.DarkViolet;
+
                 roadBrush.Color = Color.Black;
                 houseBrush.Color = Color.Black;
                 roofBrush.Color = Color.Black;
                 drivewayBrush.Color = Color.Black;
+                rainBrush.Color = Color.Black;
 
-                e.Graphics.DrawImage(Properties.Resources.theGlitch, 400, 150, 100, 100);
+              
             }
         }
         public void Collision()

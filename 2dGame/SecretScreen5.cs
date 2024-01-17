@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Animation;
 
 namespace _2dGame
 {
@@ -43,6 +44,7 @@ namespace _2dGame
             if(SecretLoadingScreen.hacked == false)
             {
                 hero = new Player(0, 400, 4, 4);
+                
             }
             else 
             {
@@ -51,9 +53,14 @@ namespace _2dGame
 
                 this.BackColor = Color.Black;
 
+                roadBrush.Color = Color.DarkViolet;
                 houseBrush.Color = Color.DarkViolet;
                 roofBrush.Color = Color.DarkViolet;
                 drivewayBrush.Color = Color.DarkViolet;
+                rainBrush.Color = Color.DarkViolet;
+                
+                rainSpeedY *= -1;
+                rainSpeedX = 0;
             }
 
         }
@@ -142,22 +149,23 @@ namespace _2dGame
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 300, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 400, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 500, rainSize, rainSize));
+            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 500, rainSize, rainSize));
 
 
             //remove raindrops
             for (int i = 0; i < rain.Count; i++)
             {
-                if (rain[i].Y >= this.Height)
+                if (rain[i].Y >= this.Height || rain[i].Y <= 0)
                 {
                     rain.RemoveAt(i);
                 }
             }
 
-            if(hero.x <= 100 && SecretLoadingScreen.hacked == true)
+            if(SecretLoadingScreen.hacked == true)
             {
-                roadBrush.Color = Color.Black;
+                
+                
             }
-
             Refresh();
         }
 
@@ -238,6 +246,16 @@ namespace _2dGame
             {
                 e.Graphics.FillEllipse(rainBrush, rain[i]);
 
+            }
+
+            if (hero.x <= 100 && SecretLoadingScreen.hacked == true)
+            {
+                roadBrush.Color = Color.Black;
+                houseBrush.Color = Color.Black;
+                roofBrush.Color = Color.Black;
+                drivewayBrush.Color = Color.Black;
+
+                e.Graphics.DrawImage(Properties.Resources.theGlitch, 400, 150, 100, 100);
             }
         }
         public void Collision()

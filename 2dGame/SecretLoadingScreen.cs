@@ -23,6 +23,8 @@ namespace _2dGame
             InitializeComponent();
 
             sLTimer.Start();
+
+            SecretScreen1.secretMusic.Stop();
         }
 
         private void sLTimer_Tick(object sender, EventArgs e)

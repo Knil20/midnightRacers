@@ -36,7 +36,7 @@ namespace _2dGame
         Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
         public static Boolean isBack = false;
 
-        System.Windows.Media.MediaPlayer secretMusic = new System.Windows.Media.MediaPlayer();
+        public static System.Windows.Media.MediaPlayer secretMusic = new System.Windows.Media.MediaPlayer();
 
         public SecretScreen1()
         {
@@ -44,20 +44,39 @@ namespace _2dGame
 
             secretTimer1.Start();
 
-            if (isBack == false)
+            if (SecretLoadingScreen.hacked == false)
             {
-                secretMusic.Open(new Uri(Application.StartupPath + "/Resources/1-15. Smashing Windshields.wav"));
-                secretMusic.MediaEnded += new EventHandler(secretMusic_MediaEnded);
-                secretMusic.Play();
+                if (isBack == false)
+                {
+                    secretMusic.Open(new Uri(Application.StartupPath + "/Resources/1-15. Smashing Windshields.wav"));
+                    secretMusic.MediaEnded += new EventHandler(secretMusic_MediaEnded);
+                    secretMusic.Play();
 
-                hero = new Player(125, 30, 4, 4);
+                    hero = new Player(125, 30, 4, 4);
 
+                }
+                else
+                {
+                    hero = new Player(0, 375, 4, 4);
+                    direction = "right";
+                }
             }
             else
             {
                 hero = new Player(0, 375, 4, 4);
-                direction = "right";
+
+                direction = "up";
+
+
+                this.BackColor = Color.Black;
+
+                roadBrush.Color = Color.DarkViolet;
+                rainBrush.Color = Color.DarkViolet;
+
+                rainSpeedY *= -1;
+                rainSpeedX = 0;
             }
+                
             isBack = false;
 
         }
@@ -131,9 +150,32 @@ namespace _2dGame
 
             for (int i = 0; i < rain.Count; i++)
             {
-                int y = rain[i].Y + rainSpeedY;
-                int x = rain[i].X + rainSpeedX;
-                rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                if (SecretLoadingScreen.hacked == false)
+                {
+                    int y = rain[i].Y + rainSpeedY;
+                    int x = rain[i].X + rainSpeedX;
+                    rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                }
+                else
+                {
+                    randValue = randGen.Next(1, 3);
+
+                    if (randValue > 1)
+                    {
+                        rainSpeedY *= -1;
+
+                        int y = rain[i].Y + rainSpeedY;
+                        int x = rain[i].X + rainSpeedX;
+                        rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                    }
+                    else
+                    {
+                        int y = rain[i].Y + rainSpeedY;
+                        int x = rain[i].X + rainSpeedX;
+                        rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                    }
+                }
+
             }
 
             //generate new raindrops
@@ -146,6 +188,8 @@ namespace _2dGame
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 300, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 400, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 500, rainSize, rainSize));
+            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 500, rainSize, rainSize));
+
 
             //remove raindrops
             for (int i = 0; i < rain.Count; i++)

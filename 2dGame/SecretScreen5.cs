@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
+using System.Threading;
 
 namespace _2dGame
 {
@@ -23,6 +24,11 @@ namespace _2dGame
         SolidBrush drivewayBrush = new SolidBrush(Color.Gray);
         SolidBrush houseBrush = new SolidBrush(Color.DarkRed);
         SolidBrush roofBrush = new SolidBrush(Color.Sienna);
+
+        Rectangle secRec1 = new Rectangle(0, 350, 600, 125);
+        Rectangle secRec2 = new Rectangle(300, 175, 125, 175);
+        Rectangle secRec3 = new Rectangle(275, 0, 400, 175);
+        Rectangle secRec4 = new Rectangle(260, 0, 430, 5);
 
         Random randGen = new Random();
         int randValue = 0;
@@ -41,24 +47,24 @@ namespace _2dGame
 
             secretTimer5.Start();
 
-            if(SecretLoadingScreen.hacked == false)
+            if (SecretLoadingScreen.hacked == false)
             {
                 hero = new Player(0, 400, 4, 4);
-                
+
             }
-            else 
+            else
             {
                 hero = new Player(325, 200, 4, 4);
                 direction = "down";
 
                 this.BackColor = Color.Black;
 
-                roadBrush.Color = Color.DarkViolet;
-                houseBrush.Color = Color.DarkViolet;
-                roofBrush.Color = Color.DarkViolet;
-                drivewayBrush.Color = Color.DarkViolet;
+                roadBrush.Color = Color.Black;
+                houseBrush.Color = Color.Black;
+                roofBrush.Color = Color.Black;
+                drivewayBrush.Color = Color.Black;
                 rainBrush.Color = Color.DarkViolet;
-                
+
                 rainSpeedY *= -1;
                 rainSpeedX = 0;
             }
@@ -134,9 +140,32 @@ namespace _2dGame
 
             for (int i = 0; i < rain.Count; i++)
             {
-                int y = rain[i].Y + rainSpeedY;
-                int x = rain[i].X + rainSpeedX;
-                rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                if (SecretLoadingScreen.hacked == false)
+                {
+                    int y = rain[i].Y + rainSpeedY;
+                    int x = rain[i].X + rainSpeedX;
+                    rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                }
+                else
+                {
+                    randValue = randGen.Next(1, 3);
+
+                    if (randValue > 1)
+                    {
+                        rainSpeedY *= -1;
+
+                        int y = rain[i].Y + rainSpeedY;
+                        int x = rain[i].X + rainSpeedX;
+                        rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                    }
+                    else
+                    {
+                        int y = rain[i].Y + rainSpeedY;
+                        int x = rain[i].X + rainSpeedX;
+                        rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                    }
+                }
+
             }
 
             //generate new raindrops
@@ -159,17 +188,37 @@ namespace _2dGame
                 {
                     rain.RemoveAt(i);
                 }
+
             }
+
+            if (SecretLoadingScreen.hacked == true)
+            {
+                for (int i = 0; i < rain.Count; i++)
+                {
+                    if (rain[i].IntersectsWith(secRec1))
+                    {
+                        rain.RemoveAt(i);
+                    }
+                    if (rain[i].IntersectsWith(secRec2))
+                    {
+                        rain.RemoveAt(i);
+                    }
+
+                }
+            }
+
+
+
             Refresh();
         }
 
         private void SecretScreen5_Paint(object sender, PaintEventArgs e)
         {
             //drawing the road
-            e.Graphics.FillRectangle(roadBrush, 0, 350, 600, 125);
-            e.Graphics.FillRectangle(drivewayBrush, 300, 175, 125, 175);
-            e.Graphics.FillRectangle(houseBrush, 275, 0, 400, 175);
-            e.Graphics.FillRectangle(roofBrush, 260, 0, 430, 5);
+            e.Graphics.FillRectangle(roadBrush, secRec1);
+            e.Graphics.FillRectangle(drivewayBrush, secRec2);
+            e.Graphics.FillRectangle(houseBrush, secRec3);
+            e.Graphics.FillRectangle(roofBrush, secRec4);
 
 
             if (direction == "up")
@@ -242,18 +291,6 @@ namespace _2dGame
 
             }
 
-            if (hero.x <= 100 && SecretLoadingScreen.hacked == true)
-            {
-                //this.BackColor = Color.DarkViolet;
-
-                roadBrush.Color = Color.Black;
-                houseBrush.Color = Color.Black;
-                roofBrush.Color = Color.Black;
-                drivewayBrush.Color = Color.Black;
-                rainBrush.Color = Color.Black;
-
-              
-            }
         }
         public void Collision()
         {
@@ -271,6 +308,19 @@ namespace _2dGame
             {
                 SecretScreen4.isBack = true;
                 Form1.ChangeScreen(this, new SecretScreen4());
+            }
+            if (SecretLoadingScreen.hacked == true)
+            {
+                for (int i = 0; i < rain.Count; i++)
+                {
+                    if (rain[i].IntersectsWith(playerRec))
+                    {
+                        Form1.ChangeScreen(this, new MenuScreen());
+                        secretTimer5.Enabled = false;
+                    }
+                    
+
+                }
             }
         }
     }

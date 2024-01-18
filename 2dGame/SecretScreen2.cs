@@ -41,16 +41,38 @@ namespace _2dGame
 
             secretTimer2.Start();
 
-            if (isBack == false)
+
+            if (SecretLoadingScreen.hacked == false)
             {
-                hero = new Player(720, 70, 4, 4);
+                if (isBack == false)
+                {
+                    hero = new Player(720, 70, 4, 4);
+                }
+                else
+                {
+                    isMonster++;
+                    hero = new Player(425, 450, 4, 4);
+                    direction = "up";
+                }
             }
             else
             {
-                isMonster++;
                 hero = new Player(425, 450, 4, 4);
+
                 direction = "up";
+
+
+                this.BackColor = Color.Black;
+
+                roadBrush.Color = Color.DarkViolet;
+                rainBrush.Color = Color.DarkViolet;
+
+                rainSpeedY *= -1;
+                rainSpeedX = 0;
+
+                isMonster++;
             }
+                
             isBack = false;
         }
 
@@ -123,9 +145,32 @@ namespace _2dGame
 
             for (int i = 0; i < rain.Count; i++)
             {
-                int y = rain[i].Y + rainSpeedY;
-                int x = rain[i].X + rainSpeedX;
-                rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                if (SecretLoadingScreen.hacked == false)
+                {
+                    int y = rain[i].Y + rainSpeedY;
+                    int x = rain[i].X + rainSpeedX;
+                    rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                }
+                else
+                {
+                    randValue = randGen.Next(1, 3);
+
+                    if (randValue > 1)
+                    {
+                        rainSpeedY *= -1;
+
+                        int y = rain[i].Y + rainSpeedY;
+                        int x = rain[i].X + rainSpeedX;
+                        rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                    }
+                    else
+                    {
+                        int y = rain[i].Y + rainSpeedY;
+                        int x = rain[i].X + rainSpeedX;
+                        rain[i] = new Rectangle(x, y, rainSize, rainSize);
+                    }
+                }
+
             }
 
             //generate new raindrops
@@ -137,6 +182,7 @@ namespace _2dGame
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 200, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 300, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 400, rainSize, rainSize));
+            rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 500, rainSize, rainSize));
             rain.Add(new Rectangle(randGen.Next(0, 1300 - rainSize), 500, rainSize, rainSize));
 
 

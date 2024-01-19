@@ -48,7 +48,7 @@ namespace _2dGame //Midnight Racers
         public static int timesHit = 0;
 
         public static Boolean criticalHit = false;
-        public static Boolean hasStar = true;
+        public static Boolean hasStar = false;
         public static Boolean winLoad = false;
         public static Boolean loseLoad = false;
         public static Boolean menuLoad = false;
@@ -597,6 +597,11 @@ namespace _2dGame //Midnight Racers
         private void quitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void secret()
+        {
+
         }
 
 

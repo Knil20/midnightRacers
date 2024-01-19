@@ -41,6 +41,8 @@ namespace _2dGame
 
 
         Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
+        Boolean safe = false;
+
         public SecretScreen5()
         {
             InitializeComponent();
@@ -63,7 +65,7 @@ namespace _2dGame
                 houseBrush.Color = Color.Black;
                 roofBrush.Color = Color.Black;
                 drivewayBrush.Color = Color.Black;
-                rainBrush.Color = Color.DarkViolet;
+                rainBrush.Color = Color.Lime;
 
                 rainSpeedY *= -1;
                 rainSpeedX = 0;
@@ -309,17 +311,23 @@ namespace _2dGame
                 SecretScreen4.isBack = true;
                 Form1.ChangeScreen(this, new SecretScreen4());
             }
+            if (secRec1.IntersectsWith(playerRec) || secRec2.IntersectsWith(playerRec))
+            {
+                safe = true;
+            }
+            else
+            {
+                safe = false;
+            }
             if (SecretLoadingScreen.hacked == true)
             {
                 for (int i = 0; i < rain.Count; i++)
                 {
-                    if (rain[i].IntersectsWith(playerRec))
+                    if (rain[i].IntersectsWith(playerRec) && safe == false)
                     {
-                        Form1.ChangeScreen(this, new MenuScreen());
+                        Form1.ChangeScreen(this, new HackedScreen());
                         secretTimer5.Enabled = false;
                     }
-                    
-
                 }
             }
         }

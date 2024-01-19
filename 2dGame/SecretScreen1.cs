@@ -24,6 +24,12 @@ namespace _2dGame
         SolidBrush roadBrush = new SolidBrush(Color.SaddleBrown);
         SolidBrush rainBrush = new SolidBrush(Color.Navy);
 
+        Rectangle secRec1 = new Rectangle(100, 0, 125, 200);
+        Rectangle secRec2 = new Rectangle(100, 75, 600, 125);
+        Rectangle secRec3 = new Rectangle(600, 75, 125, 375);
+        Rectangle secRec4 = new Rectangle(0, 325, 700, 125);
+        Rectangle starRec = new Rectangle(150, 25, 50, 50);
+
         Random randGen = new Random();
         int randValue = 0;
 
@@ -38,6 +44,7 @@ namespace _2dGame
 
         public static System.Windows.Media.MediaPlayer secretMusic = new System.Windows.Media.MediaPlayer();
 
+        Boolean safe = false;
         public SecretScreen1()
         {
             InitializeComponent();
@@ -70,8 +77,8 @@ namespace _2dGame
 
                 this.BackColor = Color.Black;
 
-                roadBrush.Color = Color.DarkViolet;
-                rainBrush.Color = Color.DarkViolet;
+                roadBrush.Color = Color.Black;
+                rainBrush.Color = Color.Lime;
 
                 rainSpeedY *= -1;
                 rainSpeedX = 0;
@@ -200,6 +207,29 @@ namespace _2dGame
                 }
             }
 
+            if (SecretLoadingScreen.hacked == true)
+            {
+                for (int i = 0; i < rain.Count; i++)
+                {
+                    if (rain[i].IntersectsWith(secRec1))
+                    {
+                        rain.RemoveAt(i);
+                    }
+                    if (rain[i].IntersectsWith(secRec2))
+                    {
+                        rain.RemoveAt(i);
+                    }
+                    if (rain[i].IntersectsWith(secRec3))
+                    {
+                        rain.RemoveAt(i);
+                    }
+                    if (rain[i].IntersectsWith(secRec4))
+                    {
+                        rain.RemoveAt(i);
+                    }
+
+                }
+            }
 
             Refresh();
         }
@@ -207,10 +237,10 @@ namespace _2dGame
         private void SecretScreen1_Paint(object sender, PaintEventArgs e)
         {
             //drawing the road
-            e.Graphics.FillRectangle(roadBrush, 100, 0, 125, 200);
-            e.Graphics.FillRectangle(roadBrush, 100, 75, 600, 125);
-            e.Graphics.FillRectangle(roadBrush, 600, 75, 125, 375);
-            e.Graphics.FillRectangle(roadBrush, 0, 325, 700, 125);
+            e.Graphics.FillRectangle(roadBrush, secRec1);
+            e.Graphics.FillRectangle(roadBrush, secRec2);
+            e.Graphics.FillRectangle(roadBrush, secRec3);
+            e.Graphics.FillRectangle(roadBrush, secRec4);
 
             if (direction == "up")
             {
@@ -271,6 +301,11 @@ namespace _2dGame
                 e.Graphics.DrawImage(Properties.Resources.CarImage, hero.x, hero.y, hero.width, hero.height);
             }
 
+            if(SecretLoadingScreen.hacked == true)
+            {
+                e.Graphics.DrawImage(Properties.Resources.starImage, starRec);
+            }
+
 
             for (int i = 0; i < rain.Count(); i++)
             {
@@ -290,7 +325,36 @@ namespace _2dGame
                 Form1.ChangeScreen(this, new SecretScreen2());
                 secretTimer1.Enabled = false;
             }
+            if (starRec.IntersectsWith(playerRec) && SecretLoadingScreen.hacked == true)
+            {
+                secretTimer1.Enabled = false;
+                GameScreen.hasStar = true;
+                Form1.ChangeScreen(this, new MenuScreen());
+                
+            }
+
+            if (secRec1.IntersectsWith(playerRec) || secRec2.IntersectsWith(playerRec) || secRec3.IntersectsWith(playerRec) || secRec4.IntersectsWith(playerRec))
+            {
+                safe = true;
+            }
+            else
+            {
+                safe = false;
+            }
+            if (SecretLoadingScreen.hacked == true)
+            {
+                for (int i = 0; i < rain.Count; i++)
+                {
+                    if (rain[i].IntersectsWith(playerRec) && safe == false)
+                    {
+                        
+                        Form1.ChangeScreen(this, new HackedScreen());
+                        secretTimer1.Enabled = false;
+                    }
+                }
+            }
         }
+
         private void secretMusic_MediaEnded(object sender, EventArgs e)
         {
             secretMusic.Stop();

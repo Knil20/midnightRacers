@@ -21,6 +21,11 @@ namespace _2dGame
         SolidBrush roadBrush = new SolidBrush(Color.SaddleBrown);
         SolidBrush rainBrush = new SolidBrush(Color.Navy);
 
+        Rectangle secRec1 = new Rectangle(0, 25, 800, 125);
+        Rectangle secRec2 = new Rectangle(0, 25, 125, 400);
+        Rectangle secRec3 = new Rectangle(0, 300, 525, 125);
+        Rectangle secRec4 = new Rectangle(400, 400, 125, 100);
+
         Random randGen = new Random();
         int randValue = 0;
 
@@ -35,6 +40,7 @@ namespace _2dGame
 
         public static Boolean isBack = false;
 
+        Boolean safe = false;
         public SecretScreen2()
         {
             InitializeComponent();
@@ -64,8 +70,8 @@ namespace _2dGame
 
                 this.BackColor = Color.Black;
 
-                roadBrush.Color = Color.DarkViolet;
-                rainBrush.Color = Color.DarkViolet;
+                roadBrush.Color = Color.Black;
+                rainBrush.Color = Color.Lime;
 
                 rainSpeedY *= -1;
                 rainSpeedX = 0;
@@ -195,6 +201,29 @@ namespace _2dGame
                 }
             }
 
+            if (SecretLoadingScreen.hacked == true)
+            {
+                for (int i = 0; i < rain.Count; i++)
+                {
+                    if (rain[i].IntersectsWith(secRec1))
+                    {
+                        rain.RemoveAt(i);
+                    }
+                    if (rain[i].IntersectsWith(secRec2))
+                    {
+                        rain.RemoveAt(i);
+                    }
+                    if (rain[i].IntersectsWith(secRec3))
+                    {
+                        rain.RemoveAt(i);
+                    }
+                    if (rain[i].IntersectsWith(secRec4))
+                    {
+                        rain.RemoveAt(i);
+                    }
+
+                }
+            }
 
             Refresh();
         }
@@ -202,10 +231,10 @@ namespace _2dGame
         private void SecretScreen2_Paint(object sender, PaintEventArgs e)
         {
             //drawing the road
-            e.Graphics.FillRectangle(roadBrush, 0, 25, 800, 125);
-            e.Graphics.FillRectangle(roadBrush, 0, 25, 125, 400);
-            e.Graphics.FillRectangle(roadBrush, 0, 300, 525, 125);
-            e.Graphics.FillRectangle(roadBrush, 400, 400, 125, 100);
+            e.Graphics.FillRectangle(roadBrush, secRec1);
+            e.Graphics.FillRectangle(roadBrush, secRec2);
+            e.Graphics.FillRectangle(roadBrush, secRec3);
+            e.Graphics.FillRectangle(roadBrush, secRec4);
 
             if (direction == "up")
             {
@@ -296,6 +325,26 @@ namespace _2dGame
             {
                 SecretScreen1.isBack = true;
                 Form1.ChangeScreen(this, new SecretScreen1());
+            }
+            if (secRec1.IntersectsWith(playerRec) || secRec2.IntersectsWith(playerRec) || secRec3.IntersectsWith(playerRec) || secRec4.IntersectsWith(playerRec))
+            {
+                safe = true;
+            }
+            else
+            {
+                safe = false;
+            }
+            if (SecretLoadingScreen.hacked == true)
+            {
+                for (int i = 0; i < rain.Count; i++)
+                {
+                    if (rain[i].IntersectsWith(playerRec) && safe == false)
+                    {
+                        
+                        Form1.ChangeScreen(this, new HackedScreen());
+                        secretTimer2.Enabled = false;
+                    }
+                }
             }
         }
     }

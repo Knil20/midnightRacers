@@ -37,6 +37,8 @@ namespace _2dGame //Midnight Racers
         SolidBrush lineBrush = new SolidBrush(Color.Goldenrod);
         SolidBrush bitBrush = new SolidBrush(Color.White);
 
+        Rectangle secretEnterance = new Rectangle(800, 480, 300, 20);
+        
         List<Car> cars = new List<Car>();
         List<RoadLines> roadLines = new List<RoadLines>();
 
@@ -253,6 +255,7 @@ namespace _2dGame //Midnight Racers
             else if (rightArrowDown && hero.x < this.Width - hero.width)
             {
                 hero.Move("right");
+                
             }
 
             if (upArrowDown && hero.y > 0)
@@ -262,6 +265,7 @@ namespace _2dGame //Midnight Racers
             else if (downArrowDown && hero.y < this.Height - hero.height)
             {
                 hero.Move("down");
+                
             }
 
             //Subtract time from timer
@@ -436,11 +440,19 @@ namespace _2dGame //Midnight Racers
                 winLoad = true;
                 Form1.ChangeScreen(this, new LoadingScreen());
             }
+            if( time <= 4000)
+            {
+                secretEnterance.X += -5 - multiple; 
+            }
+
+            secret(); 
+
             Refresh();
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
+            SolidBrush bgColor = new SolidBrush(bgColour);
             //changing background
             this.BackColor = bgColour;
             
@@ -448,6 +460,9 @@ namespace _2dGame //Midnight Racers
             e.Graphics.FillRectangle(sideBrush, 0, 240, 800, 20);
             e.Graphics.FillRectangle(sideBrush, 0, 0, 800, 20);
             e.Graphics.FillRectangle(sideBrush, 0, 480, 800, 20);
+
+            //drawing secret enterance
+            e.Graphics.FillRectangle(bgColor, secretEnterance);
 
             //drawing the cars and roadlines
             foreach (Car c in cars)
@@ -601,7 +616,14 @@ namespace _2dGame //Midnight Racers
 
         private void secret()
         {
+            Rectangle playerRec = new Rectangle(hero.x, hero.y, hero.width, hero.height);
 
+            if(secretEnterance.IntersectsWith(playerRec))
+            {
+                bgMusic.Stop();
+                gameTimer.Stop();
+                Form1.ChangeScreen(this, new SecretScreen1());
+            }
         }
 
 

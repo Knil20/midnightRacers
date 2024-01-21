@@ -325,8 +325,9 @@ namespace _2dGame
                 {
                     if (rain[i].IntersectsWith(playerRec) && safe == false)
                     {
-                        Form1.ChangeScreen(this, new HackedScreen());
                         secretTimer5.Enabled = false;
+                        Form1.ChangeScreen(this, new HackedScreen());
+                        
                     }
                 }
             }

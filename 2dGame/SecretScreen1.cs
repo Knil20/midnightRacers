@@ -140,6 +140,7 @@ namespace _2dGame
                 direction = ("right");
                 Collision();
                 hero.Move("right");
+
             }
             else if (upArrowDown && hero.y > 0)
             {
@@ -149,6 +150,7 @@ namespace _2dGame
             }
             else if (downArrowDown && hero.y < this.Height - hero.height)
             {
+               
                 direction = ("down");
                 Collision();
                 hero.Move("down");

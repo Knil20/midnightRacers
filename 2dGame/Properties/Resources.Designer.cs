@@ -207,10 +207,40 @@ namespace _2dGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap treeImage {
+            get {
+                object obj = ResourceManager.GetObject("treeImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap treeImage1 {
+            get {
+                object obj = ResourceManager.GetObject("treeImage1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Untitled_design_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("Untitled_design-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] watercolor_pine_tree_clip_art_png {
+            get {
+                object obj = ResourceManager.GetObject("watercolor_pine_tree_clip_art_png", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

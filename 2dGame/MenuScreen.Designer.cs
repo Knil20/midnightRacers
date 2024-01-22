@@ -33,6 +33,8 @@
             this.quitButton = new System.Windows.Forms.Button();
             this.helpButton = new System.Windows.Forms.Button();
             this.secretButton = new System.Windows.Forms.Button();
+            this.starBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.starBox)).BeginInit();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -103,13 +105,27 @@
             this.secretButton.TabIndex = 5;
             this.secretButton.Text = "Secret Game";
             this.secretButton.UseVisualStyleBackColor = false;
+            this.secretButton.Visible = false;
             this.secretButton.Click += new System.EventHandler(this.secretButton_Click);
+            // 
+            // starBox
+            // 
+            this.starBox.BackgroundImage = global::_2dGame.Properties.Resources.starImage;
+            this.starBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.starBox.Location = new System.Drawing.Point(697, 3);
+            this.starBox.Name = "starBox";
+            this.starBox.Size = new System.Drawing.Size(100, 100);
+            this.starBox.TabIndex = 6;
+            this.starBox.TabStop = false;
+            this.starBox.Visible = false;
+            this.starBox.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // MenuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.starBox);
             this.Controls.Add(this.secretButton);
             this.Controls.Add(this.helpButton);
             this.Controls.Add(this.quitButton);
@@ -117,6 +133,7 @@
             this.Controls.Add(this.titleLabel);
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(800, 500);
+            ((System.ComponentModel.ISupportInitialize)(this.starBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -129,5 +146,6 @@
         private System.Windows.Forms.Button quitButton;
         private System.Windows.Forms.Button helpButton;
         private System.Windows.Forms.Button secretButton;
+        private System.Windows.Forms.PictureBox starBox;
     }
 }

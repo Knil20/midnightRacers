@@ -21,6 +21,21 @@ namespace _2dGame
             InitializeComponent();
 
             menu.Play();
+
+            GameScreen.winLoad = false;
+            GameScreen.loseLoad = false;
+            GameScreen.menuLoad = false;
+            GameScreen.resetLoad = false;
+            GameScreen.secretLoad = false;
+
+            if (GameScreen.foundSecret == true)
+            {
+                secretButton.Visible = true;
+            }
+            if (GameScreen.hasStar == true)
+            {
+                starBox.Visible = true;
+            }
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -47,6 +62,11 @@ namespace _2dGame
             menu.Stop();
             GameScreen.secretLoad = true;
             Form1.ChangeScreen(this, new LoadingScreen());
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

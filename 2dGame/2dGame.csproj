@@ -68,6 +68,12 @@
     <Compile Include="GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="GoodEnding.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GoodEnding.Designer.cs">
+      <DependentUpon>GoodEnding.cs</DependentUpon>
+    </Compile>
     <Compile Include="HackedScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     <EmbeddedResource Include="GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GoodEnding.resx">
+      <DependentUpon>GoodEnding.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HackedScreen.resx">
       <DependentUpon>HackedScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,6 +211,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\watercolor-pine-tree-clip-art-png.webp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -267,6 +277,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\starImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\treeImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\treeImage1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,7 +23,7 @@ namespace _2dGame //Midnight Racers
         int xSpeed, ySpeed;
         int location;
         string direction, crColor;
-        int time = 6000; //6000
+        int time = 4000; //6000
         int colorValue = 0;
         Boolean isPaused = true;
 
@@ -51,6 +51,7 @@ namespace _2dGame //Midnight Racers
 
         public static Boolean criticalHit = false;
         public static Boolean hasStar = false;
+        public static Boolean foundSecret = false;
         public static Boolean winLoad = false;
         public static Boolean loseLoad = false;
         public static Boolean menuLoad = false;
@@ -90,6 +91,7 @@ namespace _2dGame //Midnight Racers
             loseLoad = false;
             menuLoad = false;
             resetLoad = false;
+            secretLoad = false;
 
             //Create Hero
             hero = new Player(100, 235, 4, 6);
@@ -622,7 +624,9 @@ namespace _2dGame //Midnight Racers
             {
                 bgMusic.Stop();
                 gameTimer.Stop();
-                Form1.ChangeScreen(this, new SecretScreen1());
+                secretLoad = true;
+                foundSecret = true;
+                Form1.ChangeScreen(this, new LoadingScreen());
             }
         }
 

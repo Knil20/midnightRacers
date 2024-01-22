@@ -82,6 +82,26 @@ namespace _2dGame
 
                 rainSpeedY *= -1;
                 rainSpeedX = 0;
+
+                pictureBox1.Visible = false;
+                pictureBox2.Visible = false;
+                pictureBox3.Visible = false;
+                pictureBox4.Visible = false;
+                pictureBox5.Visible = false;
+                pictureBox6.Visible = false;
+                pictureBox7.Visible = false;
+                pictureBox8.Visible = false;
+                pictureBox9.Visible = false;
+                pictureBox10.Visible = false;
+                pictureBox11.Visible = false;
+                pictureBox12.Visible = false;
+                pictureBox13.Visible = false;
+                pictureBox14.Visible = false;
+                pictureBox15.Visible = false;
+                pictureBox16.Visible = false;
+                pictureBox17.Visible = false;
+                pictureBox18.Visible = false;
+                pictureBox19.Visible = false;
             }
                 
             isBack = false;
@@ -349,7 +369,7 @@ namespace _2dGame
                 {
                     if (rain[i].IntersectsWith(playerRec) && safe == false)
                     {
-                        
+                        rain.RemoveAt(i);
                         Form1.ChangeScreen(this, new HackedScreen());
                         secretTimer1.Enabled = false;
                     }

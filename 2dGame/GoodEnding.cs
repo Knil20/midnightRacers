@@ -16,30 +16,28 @@ namespace _2dGame
         public GoodEnding()
         {
             InitializeComponent();
-
-            wisdomLabel.Text = "";
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
             wisdomLabel.Text += "When In The Deepest of Dark.";
 
-            Thread.Sleep(5000);
+            Thread.Sleep(4000);
             Refresh();
 
-            wisdomLabel.Text += "\nThere is Always a Way to Out.";
+            wisdomLabel.Text += "\nThere is Always a Light That Will Shine.";
 
-            Thread.Sleep(5000);
+            Thread.Sleep(4000);
             Refresh();
 
             wisdomLabel.Text += "\nWell Done Hero";
 
-            Thread.Sleep(5000);
+            Thread.Sleep(4000);
             Refresh();
 
             wisdomLabel.Text += "\nYou've Escaped The Curse";
 
-            Thread.Sleep(5000);
+            Thread.Sleep(4000);
             Refresh();
         }
     }

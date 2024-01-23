@@ -53,8 +53,6 @@
             this.wisdomLabel.Name = "wisdomLabel";
             this.wisdomLabel.Size = new System.Drawing.Size(300, 300);
             this.wisdomLabel.TabIndex = 1;
-            this.wisdomLabel.Text = "When In The Deepest of Dark, \r\nThere is Always a Way to Out. \r\nWell Done Hero, \r\n" +
-    "You\'ve Escaped The Curse.";
             // 
             // GoodEnding
             // 

@@ -16,6 +16,7 @@ namespace _2dGame
         public GoodEnding()
         {
             InitializeComponent();
+            SecretScreen5.hackedMusic.Stop();
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -39,6 +40,13 @@ namespace _2dGame
 
             Thread.Sleep(4000);
             Refresh();
+
+            wisdomLabel.Text += "\n";
+
+            Thread.Sleep(4000);
+            Refresh();
+
+            Form1.ChangeScreen(this, new MenuScreen());
         }
     }
 }

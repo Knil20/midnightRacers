@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.Media;
 
 namespace _2dGame
 {
@@ -18,6 +19,8 @@ namespace _2dGame
 
         public static Boolean hacked = false;
 
+        SoundPlayer staticA = new SoundPlayer(Properties.Resources.staticError);
+
         public SecretLoadingScreen()
         {
             InitializeComponent();
@@ -25,6 +28,7 @@ namespace _2dGame
             sLTimer.Start();
 
             SecretScreen1.secretMusic.Stop();
+            staticA.Play();
         }
 
         private void sLTimer_Tick(object sender, EventArgs e)
@@ -48,6 +52,7 @@ namespace _2dGame
             if (time == 100)
             {
                 hacked = true;
+                staticA.Stop();
                 Form1.ChangeScreen(this, new SecretScreen5());
                 sLTimer.Enabled = false;
             }

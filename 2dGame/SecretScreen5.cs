@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
 using System.Threading;
+using System.IO;
 
 namespace _2dGame
 {
@@ -39,6 +40,7 @@ namespace _2dGame
         int rainSpeedY = 10;
         int rainSpeedX = -10;
 
+        public static System.Windows.Media.MediaPlayer hackedMusic = new System.Windows.Media.MediaPlayer();
 
         Boolean leftArrowDown, rightArrowDown, upArrowDown, downArrowDown;
         Boolean safe = false;
@@ -47,15 +49,20 @@ namespace _2dGame
         {
             InitializeComponent();
 
+
+
             secretTimer5.Start();
 
             if (SecretLoadingScreen.hacked == false)
             {
                 hero = new Player(0, 400, 4, 4);
-
             }
             else
             {
+                hackedMusic.Open(new Uri(Application.StartupPath + "/Resources/1-10. Alchemists Fantasy.wav"));
+                hackedMusic.MediaEnded += new EventHandler(secretMusic_MediaEnded);
+                hackedMusic.Play();
+
                 hero = new Player(325, 200, 4, 4);
                 direction = "down";
 
@@ -94,6 +101,8 @@ namespace _2dGame
                 pictureBox21.Visible = false;
                 pictureBox22.Visible = false;
                 pictureBox23.Visible = false;
+                pictureBox24.Visible = false;
+                pictureBox25.Visible = false;
             }
 
         }
@@ -348,15 +357,29 @@ namespace _2dGame
             {
                 for (int i = 0; i < rain.Count; i++)
                 {
-                    if (rain[i].IntersectsWith(playerRec) && safe == false)
+                    try
                     {
-                        rain.RemoveAt(i);
-                        Form1.ChangeScreen(this, new HackedScreen());
-                        secretTimer5.Enabled = false;
+                        if (rain[i].IntersectsWith(playerRec) && safe == false)
+                        {
+                            rain.RemoveAt(i);
+                            Form1.ChangeScreen(this, new HackedScreen());
+                            secretTimer5.Enabled = false;
 
+                        }
                     }
+                    catch
+                    {
+                            Form1.ChangeScreen(this, new HackedScreen());
+                            secretTimer5.Enabled = false;
+                    }
+                    
                 }
             }
+        }
+        private void secretMusic_MediaEnded(object sender, EventArgs e)
+        {
+            hackedMusic.Stop();
+            hackedMusic.Play();
         }
     }
 }

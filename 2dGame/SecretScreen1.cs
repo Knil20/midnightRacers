@@ -351,7 +351,7 @@ namespace _2dGame
             {
                 secretTimer1.Enabled = false;
                 GameScreen.hasStar = true;
-                Form1.ChangeScreen(this, new MenuScreen());
+                Form1.ChangeScreen(this, new GoodEnding());
                 
             }
 
@@ -367,12 +367,21 @@ namespace _2dGame
             {
                 for (int i = 0; i < rain.Count; i++)
                 {
-                    if (rain[i].IntersectsWith(playerRec) && safe == false)
+                    try
                     {
-                        rain.RemoveAt(i);
+                        if (rain[i].IntersectsWith(playerRec) && safe == false)
+                        {
+                            rain.RemoveAt(i);
+                            Form1.ChangeScreen(this, new HackedScreen());
+                            secretTimer1.Enabled = false;
+                        }
+                    }
+                    catch
+                    {
                         Form1.ChangeScreen(this, new HackedScreen());
                         secretTimer1.Enabled = false;
                     }
+                    
                 }
             }
         }

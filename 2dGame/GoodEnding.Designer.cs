@@ -30,6 +30,7 @@
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.wisdomLabel = new System.Windows.Forms.Label();
+            this.structionLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,17 +55,29 @@
             this.wisdomLabel.Size = new System.Drawing.Size(300, 300);
             this.wisdomLabel.TabIndex = 1;
             // 
+            // structionLabel
+            // 
+            this.structionLabel.AutoSize = true;
+            this.structionLabel.ForeColor = System.Drawing.Color.DimGray;
+            this.structionLabel.Location = new System.Drawing.Point(726, 487);
+            this.structionLabel.Name = "structionLabel";
+            this.structionLabel.Size = new System.Drawing.Size(74, 13);
+            this.structionLabel.TabIndex = 2;
+            this.structionLabel.Text = "Click The Star";
+            // 
             // GoodEnding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.structionLabel);
             this.Controls.Add(this.wisdomLabel);
             this.Controls.Add(this.pictureBox1);
             this.Name = "GoodEnding";
             this.Size = new System.Drawing.Size(800, 500);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -72,5 +85,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label wisdomLabel;
+        private System.Windows.Forms.Label structionLabel;
     }
 }

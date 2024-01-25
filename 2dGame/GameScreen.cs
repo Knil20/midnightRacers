@@ -23,7 +23,7 @@ namespace _2dGame //Midnight Racers
         int xSpeed, ySpeed;
         int location;
         string direction, crColor;
-        int time = 4000; //6000
+        int time = 6000; //6000
         int colorValue = 0;
         Boolean isPaused = true;
 

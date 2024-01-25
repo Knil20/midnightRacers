@@ -70,11 +70,30 @@ namespace _2dGame.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream alchemistsFantasy {
+            get {
+                return ResourceManager.GetStream("alchemistsFantasy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap CarImage {
             get {
                 object obj = ResourceManager.GetObject("CarImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download {
+            get {
+                object obj = ResourceManager.GetObject("download", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -110,6 +129,15 @@ namespace _2dGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream jumpscare {
+            get {
+                return ResourceManager.GetStream("jumpscare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream menu {
             get {
                 return ResourceManager.GetStream("menu", resourceCulture);
@@ -122,6 +150,16 @@ namespace _2dGame.Properties {
         internal static System.Drawing.Bitmap nightmareImage {
             get {
                 object obj = ResourceManager.GetObject("nightmareImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap R_4z3N {
+            get {
+                object obj = ResourceManager.GetObject("R+4z3N", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

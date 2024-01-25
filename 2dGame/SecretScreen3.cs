@@ -345,13 +345,23 @@ namespace _2dGame
             {
                 for (int i = 0; i < rain.Count; i++)
                 {
-                    if (rain[i].IntersectsWith(playerRec) && safe == false)
+                    try
                     {
-                        rain.RemoveAt(i);
+                        if (rain[i].IntersectsWith(playerRec) && safe == false)
+                        {
+                            rain.RemoveAt(i);
+                            Form1.ChangeScreen(this, new HackedScreen());
+                            secretTimer3.Enabled = false;
+
+                        }
+                    }
+                    catch
+                    {
                         Form1.ChangeScreen(this, new HackedScreen());
                         secretTimer3.Enabled = false;
                     }
                 }
+                    
             }
         }
     }

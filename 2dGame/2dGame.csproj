@@ -284,5 +284,19 @@
   <ItemGroup>
     <None Include="Resources\treeImage1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1-10. Alchemists Fantasy.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fnaf-ennard-jumpscare_srRsKIJ.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R+4z3N.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
